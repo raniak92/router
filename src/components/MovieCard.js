@@ -1,5 +1,6 @@
 import { Card } from "react-bootstrap";
 import ReactStars from "react-rating-stars-component";
+import { Link } from "react-router-dom";
 export default function MovieCard(props) {
   return (
     <div className="Card">
@@ -12,7 +13,16 @@ export default function MovieCard(props) {
         />
 
         <Card.Body className="text">
-          <Card.Title className="text-danger">{props.movie.Title} </Card.Title>
+          <Card.Title className="text-danger">
+            {" "}
+            <Link
+              to={`/description/${props.movie.Title}`}
+              state={props.movie.Title}
+              style={{ textDecoration: "none" }}
+            >
+              {props.movie.Title}
+            </Link>{" "}
+          </Card.Title>
           <Card.Text component="text-muted">
             {props.movie.Description}{" "}
           </Card.Text>

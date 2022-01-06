@@ -6,6 +6,8 @@ import React, { useState } from "react";
 import { Navbar, Nav, Row } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
+import { Routes, Route, Link } from "react-router-dom";
+import Description from "./components/Description.js";
 
 function App() {
   const [movieFlow, setMovieFlow] = useState(Movies);
@@ -18,7 +20,12 @@ function App() {
     <div className="App">
       <div className="Navbar">
         <Navbar collapseOnSelect="lg" bg="dark" variant="dark">
-          <Navbar.Brand> Movie Application </Navbar.Brand>
+          <Navbar.Brand>
+            <Link to="/" style={{ textDecoration: "none" }}>
+              {" "}
+              Movie Application{" "}
+            </Link>
+          </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav>
@@ -26,8 +33,19 @@ function App() {
             </Nav>
           </Navbar.Collapse>
         </Navbar>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <MovieList movie={movieFlow} name={search1} rating={search2} />
+            }
+          />
+          <Route
+            path="/description/:id"
+            element={<Description movies={Movies} />}
+          />
+        </Routes>
       </div>
-      <MovieList movie={movieFlow} name={search1} rating={search2} />
       <AddToTheList addMovie={addMovie} />
     </div>
   );
